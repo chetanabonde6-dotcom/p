@@ -1,0 +1,9 @@
+export type Decision="ALLOW"|"BLOCK"|"SANITIZE"|"ESCALATE";
+export type Source="user_prompt"|"uploaded_document"|"retrieved_webpage"|"tool_output";
+export type ScanRequest={content:string;source:Source;context?:string};
+export type ScanResponse={scan_id:string;decision:Decision;risk_level?:string;risk_score?:number;matched_rules?:string[];explanation?:string;sanitized_output?:string;source_trust?:string;policy_version?:string;timestamp?:string};
+export type Policy={id:string;name:string;description?:string;enabled:boolean;version?:string;updated_at?:string;source_restrictions?:string[];risk_threshold?:number;action?:Decision};
+export type Event={id:string;timestamp:string;action?:string;source?:string;severity?:string;rule?:string;description?:string};
+export type Evaluation={id:string;dataset_name?:string;dataset_version?:string;timestamp?:string;total?:number;tp?:number;fp?:number;tn?:number;fn?:number};
+export type ReviewCase={id:string;source?:string;risk_score?:number;reason?:string;timestamp?:string;status?:string;history?:{action:string;timestamp:string}[]};
+export type Dashboard={total_scans?:number;threats_detected?:number;blocked?:number;sanitized?:number;escalated?:number;allowed?:number;trend?:{date:string;count:number}[];recent_events?:Event[];evaluation?:Evaluation};
