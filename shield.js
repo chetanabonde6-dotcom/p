@@ -25,9 +25,12 @@ function inspect(input,source,policy){
  flag("secret","Protected instruction or secret request",/(?:reveal|print|show|expose|leak|give|tell me)\s+(?:(?:your|the|hidden|private|internal|all)\s+){0,4}(?:system prompt|system message|developer instructions|secret keys?|api keys?|credentials|passwords?)/i,"high");
  flag("exfil","External transfer request",/(?:send|upload|post|transmit|forward|exfiltrate)\b[^\n.!?]{0,100}\b(?:to|at|via)\s+https?:\/\/[^\s"'<>]+/i,"critical");
  const normalized=normalize(text);
+ // Catch basic percent-encoding and spaced-out overrides; decoding is inspection-only.
+ let decoded=text;try{decoded=decodeURIComponent(text);}catch(_e){}
+ if(decoded!==text && /(?:ignore|disregard)\s+(?:all\s+)?(?:previous|prior)\s+instructions/i.test(decoded) && !matches.some(x=>x.id==="override"))matches.push({id:"encoding",title:"Encoded instruction override",severity:"high",match:"[encoded payload]",index:0,end:text.length});
  if(!matches.some(x=>x.id==="override")&&/(ignoreallpreviousinstructions|disregardpreviousinstructions)/i.test(normalized.replace(/\s/g,"")))matches.push({id:"obfuscation",title:"Obfuscated instruction override",severity:"high",match:"[obfuscated text]",index:0,end:text.length});
  const policyMatches=matches.filter(m=>m.id==="exfil"?p.blockExfiltration:m.id==="secret"?p.blockSecretRequests:p.blockInstructionOverride);
- const contextual=/(?:example|fictional|training|quote|discuss|explain|prevent|how to|never share)/i.test(text);
+ const contextual=/(?:example|fictional|training|quote|discuss|explain|prevent|how to|never share)/i.test(text) && !matches.some(m=>m.id==="exfil");
  let outcome="allow",reason="No enabled injection indicators detected.";
  if(policyMatches.length){
    if(contextual){outcome="escalate";reason="Suspicious instruction-like text appears in an explanatory context. Human review reduces false positives.";}
