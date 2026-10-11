@@ -1,64 +1,47 @@
-# Chetana's Hackathon Frontend Workspace
+# PromptShield — C-03 Hackathon Frontend
 
-A beginner-friendly setup for the hackathon on 11 October 2026. The competition problem statement has not been supplied yet. This is preparation and a reusable UI example, not a completed competition solution.
+**Cybersecurity & Digital Trust | Chetana's frontend contribution**
 
-## Start in two minutes
+PromptShield is a responsive cybersecurity dashboard for demonstrating prompt-injection detection and data-exfiltration defense. The current build is a **browser-only heuristic demo**, **not** a production middleware or secure AI model.
 
-1. Download this repository with **Code → Download ZIP**, extract it, then open **index.html** in a browser.
-2. Create a ChatGPT Project called **Hackathon Frontend Copilot** and paste **docs/CHATGPT_PROJECT_INSTRUCTIONS.txt** into its instructions. If you prefer this existing chat, just continue here.
-3. Send the exact problem statement, deadline, judging criteria, and this repository link.
+## Open the working interface
+1. Open the repository at https://github.com/chetanabonde6-dotcom/p
+2. Select **Code → Download ZIP**, extract the folder and double-click `index.html`.
+3. Or serve it locally: `python3 -m http.server 8000` and visit http://localhost:8000.
 
-First message to copy:
+There are no dependencies or build steps.
 
-> I am Chetana, a complete frontend beginner. Use https://github.com/chetanabonde6-dotcom/p and its AGENTS.md. Here is our exact hackathon problem statement: [paste/attach]. Our deadline is [time and timezone]. Our team's stack is [name or unknown]. Build the strongest small complete frontend demo flow, guide me one step at a time, and clearly distinguish mock data from real APIs.
-
-## What is included
-
-- A buildless, offline starter with responsive layout, search, category filters, bookmarks, a details dialog, loading/error/empty states, and reset.
-- A separate mock/live API adapter: **api.js**. Demo mode is clearly labelled; failed live requests are never converted into fake success.
-- Beginner ChatGPT Project instructions and prompts.
-- A problem brief, backend contract template, and final demo checklist.
-- Node syntax/data-adapter checks that need no installed packages.
+## Two-minute presentation flow
+1. At **Threat scanner**, select **User message** and choose **Direct injection** → **Analyze content**. Show BLOCK with reason.
+2. Select **Indirect injection**. Note that **tool output** has lower trust. Inspect findings and the decision.
+3. Try **Safe content**. Show ALLOW. Then test **Exfiltration** and inspect the outcome.
+4. Scroll to **Detection policy**. Toggle a rule and demonstrate that the decision can change.
+5. Show **Detection benchmark**. Explain recall, false positives, and misses in the 12 labelled cases; this is not an industry-scale validation.
+6. Show the session-only **Recent scan activity** log.
 
 ## Files
+- `index.html`: accessible responsive dashboard
+- `styles.css`: dark security visual design and mobile layout
+- `app.js`: working scan input, policy controls, result UI, evaluation and activity
+- `shield.js`: local heuristic engine, fixed demo corpus, confusion matrix
+- `api.js`: unused legacy starter data adapter; it does not screen prompts
+- `tests/shield.test.cjs`: basic detection/evaluation checks
+- `docs/PROJECT_BRIEF.md`: implementation checkpoint
+- `docs/BACKEND_HANDOFF.md`: proposed integration contract
 
-| File | Purpose |
-| --- | --- |
-| index.html | Page structure and accessible controls |
-| styles.css | Shared colors, layout, typography, mobile styles |
-| api.js | Labelled mock data and explicit live API adapter |
-| app.js | Search, filters, bookmarks, dialog, and UI states |
-| AGENTS.md | Instructions for coding agents in this repository |
-| docs/CHATGPT_PROJECT_INSTRUCTIONS.txt | Copy into the ChatGPT Project's instructions |
-| docs/PROJECT_BRIEF.md | Requirements, selected flow, progress checkpoint |
-| docs/PROMPTS.md | Copy-paste messages for build, improve, fix, connect, demo |
-| docs/BACKEND_HANDOFF.md | API details to agree with the backend teammate |
-| docs/DEMO_CHECKLIST.md | Checks and a two-minute presentation outline |
-
-## Open and change it
-
-There are no package installs or framework setup steps. Keep the HTML, CSS, and JavaScript files together. Double-click **index.html** for the mock demo. Bookmark storage is best-effort: browsers may restrict it for local files; the UI still works for the current session.
-
-For a real backend, serve this folder over HTTP using the team's chosen development server. Edit the single **FrontendAPI.config** object in api.js after agreeing on the contract. Set **mode: 'live'** and an appropriate API base URL. Never place a private API key in these files. CORS and deployed backend access must be configured by the backend team.
-
-If the team already has React or another framework, ask ChatGPT to port the useful pieces into that project and preserve the team's conventions. The mock example categories are UI patterns, not the competition's domain.
-
-## Checks
-
-If Node is installed, run:
-
-```text
+## Test commands
+```sh
 node --check app.js
+node --check shield.js
 node --check api.js
+node tests/shield.test.cjs
 node tests/api.test.cjs
 ```
+Checks require Node but no `npm install`. Review the GitHub Actions status or run locally; this handoff does not claim browser/device verification.
 
-GitHub Actions also runs these checks after changes to main and on pull requests. Check the **Actions** tab for the actual result. Source syntax has been parsed during preparation; browser interaction/layout checks are not yet verified.
+## Security limitation
+Regexes and string rules miss sophisticated paraphrases, encodings and multilingual payloads, and may flag harmless quotations. `allow`, `block`, `sanitize`, `escalate` here are demo classifications only. Sanitized text must not be trusted for downstream model execution until server-side policy and rigorous validation are implemented. The frontend does not protect secrets or enforce a trusted policy. No data is transmitted from the scanner; policy and logs reset on refresh. A backend teammate must implement actual enforcement and API integration.
 
-**Before presenting:** check the page in a browser, complete the main flow, test a phone-sized layout, and follow docs/DEMO_CHECKLIST.md. A GitHub repository URL is a source-code link; it is not a hosted app link.
+Repository link is **source code**, not a public hosted app.
 
-## Scope and honesty
-
-This setup cannot guarantee a win. The next high-value step is implementing the exact judging requirements with a reliable working demo. AI assistance does not replace trying the screens or understanding the contribution. No backend, authentication, AI predictions, or public deployment is claimed by this starter.
-
-GitHub owner: **chetanabonde6-dotcom**. Account connection used for this setup: **Chetana**.
+See AGENTS.md and docs/BACKEND_HANDOFF.md for team instructions and integration.
