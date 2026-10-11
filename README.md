@@ -53,6 +53,8 @@ node --check api.js
 node tests/api.test.cjs
 ```
 
+GitHub Actions also runs these checks after changes to main and on pull requests. Check the **Actions** tab for the actual result. Source syntax has been parsed during preparation; browser interaction/layout checks are not yet verified.
+
 **Before presenting:** check the page in a browser, complete the main flow, test a phone-sized layout, and follow docs/DEMO_CHECKLIST.md. A GitHub repository URL is a source-code link; it is not a hosted app link.
 
 ## Scope and honesty

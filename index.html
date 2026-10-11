@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Chetana's beginner hackathon frontend starter. Clearly labelled mock data and reusable UI patterns.">
+<title>Launchpad · Chetana's Frontend Starter</title>
+<link rel="stylesheet" href="styles.css"><script src="api.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<aside class="rail" aria-label="Workspace navigation">
+<a class="brand" href="#main"><span class="brand-mark" aria-hidden="true">L</span>Launchpad<span class="brand-note">Frontend workspace</span></a>
+<nav><a href="#workspace">01 <span>Explore the starter</span></a><a href="#guide">02 <span>Build your project</span></a><a href="README.md">03 <span>Setup instructions</span></a></nav>
+<div class="rail-note"><span class="dot" aria-hidden="true"></span>Made to get you moving.<p>One working flow.<br>Then make it your own.</p></div>
+</aside>
+<main id="main">
+<header class="topbar"><p>CHETANA / HACKATHON FRONTEND</p><span class="mode-badge" id="mode-badge">Demo · mock data</span></header>
+<section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">YOUR STARTING POINT</p><h1 id="hero-title">Start with something<br>that <em>works.</em></h1><p class="intro">Explore a working frontend, then bring your team's problem statement. Build one complete journey from the first click to the final result.</p><a class="button primary" href="#workspace">Explore the starter <span aria-hidden="true">↘</span></a></div><div class="hero-note"><span class="note-number">01</span><p>Make the important<br>thing work first.</p><span>Design · Build · Connect · Demo</span></div></section>
+<section class="summary" aria-label="Starter overview"><div><span class="summary-label">AVAILABLE PATTERNS</span><strong id="total-count">—</strong></div><div><span class="summary-label">YOUR SAVED ITEMS</span><strong id="saved-count">0</strong></div><div><span class="summary-label">INSTALLS REQUIRED</span><strong>Zero<span class="small">for this demo</span></strong></div></section>
+<section id="workspace" class="workspace" aria-labelledby="workspace-title">
+<div class="section-heading"><div><p class="eyebrow">A SMALL WORKING EXAMPLE</p><h2 id="workspace-title">Your component shelf.</h2></div><button class="button secondary" id="refresh" type="button">Reload data</button></div>
+<p class="section-description">Sample UI patterns, using mock data. Search, filter, open details, and save an item to try the full flow.</p>
+<div class="controls"><div class="search-field"><label for="search">Find a pattern</label><input id="search" type="search" placeholder="Try “search” or “mobile”…" autocomplete="off"></div><div class="category-field"><label for="category">Category</label><select id="category"><option value="all">All categories</option><option value="Interaction">Interaction</option><option value="Data">Data</option><option value="Design">Design</option></select></div><label class="checkbox"><input id="saved-only" type="checkbox"> Saved only</label><button id="reset" class="text-button" type="button">Reset filters</button></div>
+<p id="result-message" class="result-message" role="status" aria-live="polite"></p>
+<div id="error" class="state-panel error" role="alert" hidden><h3>We couldn't load the data.</h3><p id="error-text"></p><button id="retry" class="button secondary" type="button">Try again</button></div>
+<div id="loading" class="state-panel" hidden><span class="spinner" aria-hidden="true"></span><p>Loading your component shelf…</p></div>
+<div id="empty" class="state-panel" hidden><h3>No patterns match yet.</h3><p>Try another search or reset your filters.</p><button id="empty-reset" class="button secondary" type="button">Show all patterns</button></div>
+<div id="cards" class="cards"></div>
+</section>
+<section id="guide" class="guide" aria-labelledby="guide-title"><div><p class="eyebrow">NOW MAKE IT YOURS</p><h2 id="guide-title">Your next three moves.</h2><p>Use the exact competition brief. The sample above is preparation, not your final hackathon solution.</p></div><ol><li><span>01</span><div><h3>Send the problem statement</h3><p>Include the deadline, judging criteria, and your team's existing code.</p></div></li><li><span>02</span><div><h3>Build one complete flow</h3><p>Choose the most useful user task. Let ChatGPT implement it, then try every step.</p></div></li><li><span>03</span><div><h3>Connect and rehearse</h3><p>Agree on the backend format, check failure states, and practise a two-minute demo.</p></div></li></ol></section>
+<footer><p>Launchpad / Chetana's frontend workspace</p><p>This starter uses labelled mock data. No real backend is connected by default.</p></footer>
+</main>
+<dialog id="details" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-category" class="eyebrow"></span><button id="close-dialog" class="icon-button" type="button" aria-label="Close details">×</button></div><h2 id="dialog-title"></h2><p id="dialog-description"></p><div class="dialog-tip"><h3>How to use this in your project</h3><p id="dialog-tip"></p></div><button class="button primary" id="dialog-save" type="button">Save pattern</button></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body></html>
