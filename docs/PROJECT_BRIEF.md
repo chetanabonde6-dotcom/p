@@ -37,3 +37,15 @@
 - Last verified flow:
 - Unverified checks:
 - Next priority:
+
+## PromptShield frontend checkpoint — 11 October 2026
+- Problem: VORTEXA 3.0 C-03 Prompt Injection & Data-Exfiltration Defense.
+- Deadline: two hours from user request (exact submission time not stated).
+- Source branch: feature/frontend-dashboard (do not merge without integration review).
+- Team framework: exception/unspecified; isolated Next.js App Router/TypeScript/Tailwind in frontend/; legacy starter retained.
+- Pages: overview, scanner, simulator, policies, evaluation, review queue, audit logs, settings.
+- Run: cd frontend && npm install && cp .env.example .env.local && npm run dev; visit http://localhost:3000.
+- Build/typecheck: not verified in this environment; use npm run typecheck && npm run build.
+- API mode: live-only; configured by NEXT_PUBLIC_API_BASE_URL; no mock success fallback. All API endpoints/schema and auth remain unconfirmed. See frontend/README.md.
+- Known blockers: no Python API URL, schema samples, auth roles or CORS settings; cannot verify real scan or authorization.
+- Next priority: backend team confirms POST /api/v1/scan JSON and launches endpoint; test one complete scan then verify rest.
